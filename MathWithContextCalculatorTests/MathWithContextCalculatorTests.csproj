@@ -58,9 +58,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VizrtProjectV2\VizrtProjectV2.csproj">
+    <ProjectReference Include="..\MathWithContextCalculator\MathWithContextCalculator.csproj">
       <Project>{ECB0B0F3-1D4E-4A83-96A0-BCF1EC33505D}</Project>
-      <Name>VizrtProjectV2</Name>
+      <Name>MathWithContextCalculator</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
