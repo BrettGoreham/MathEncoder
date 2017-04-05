@@ -3,7 +3,7 @@
 This project is a command line project that calculates math equations.
 
 currently the input is of the form
-<variable> = [(] [<diffVariable>integer] [+-/*] [<diffVariable integer] [)]
+<variable> = [(] [<diffVariable>integer] [+-/*^] [<diffVariable integer] [)]
 
 example
 a = 1 + 2
