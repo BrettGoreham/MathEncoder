@@ -15,12 +15,108 @@ namespace VizrtProjectV2
         {
             SearchAndCalulateBrackets(argList, context);
 
+            SearchAndCalculateExponents(argList, context);
+
             SearchAndCalculateMultiplicationAndDivision(argList, context);
             
             return AddOrSubtractArgListWithContext(argList, context);
         }
 
 
+        private static void SearchAndCalulateBrackets(List<string> argList, Dictionary<string, intVariable> context)
+        {
+            int count = 0;
+            while (count < argList.Count)
+            {
+                if (argList[count] == "(")
+                {
+                    ComputeValueOfBracket(argList, context, count);
+                }
+                count++;
+            }
+        }
+
+        private static void ComputeValueOfBracket(List<String> argList, Dictionary<String, intVariable> context,
+                                                    int startIndexOfBracket)
+        {
+
+            Boolean IsNotFound = true;
+            int indexOfNextBracket = startIndexOfBracket + 1;
+            while (IsNotFound)
+            {
+
+                if (argList[indexOfNextBracket] == "(")
+                {
+                    ComputeValueOfBracket(argList, context, indexOfNextBracket);
+                }
+
+                if (argList[indexOfNextBracket] == ")")
+                {
+                    List<String> insideBracket =
+                        argList.GetRange(startIndexOfBracket + 1, indexOfNextBracket - startIndexOfBracket - 1);
+
+                    int ValueOfBrackets = AddOrSubtractArgListWithContext(insideBracket, context);
+
+                    //remove Bracket from the argument list and replace it with the value of the bracket.
+                    argList.RemoveRange(startIndexOfBracket, (indexOfNextBracket - startIndexOfBracket) + 1);
+                    //isnt inclusive so remove up to next bracket + 1
+
+                    argList.Insert(startIndexOfBracket, ValueOfBrackets.ToString());
+                    IsNotFound = false;
+                }
+                indexOfNextBracket++;
+            }
+            return;
+        }
+
+
+
+
+
+        private static void SearchAndCalculateExponents(List<string> argList, Dictionary<string, intVariable> context)
+        {
+            for (int i = 0; i < argList.Count; i++)
+            {
+                if (argList[i] == "^")
+                {
+                    int value =(int) Math.Pow(
+                                    getValueFromString(argList[i - 1], context),
+                                    getValueFromString(argList[i + 1], context)
+                                    );
+
+                    argList.RemoveRange(i - 1, 3);
+                    argList.Insert(i - 1, value.ToString());
+                    i--;
+                }
+            }
+        }
+
+
+        private static void SearchAndCalculateMultiplicationAndDivision(List<string> argList, Dictionary<string, intVariable> context)
+        {
+            for (int i = 0; i < argList.Count; i++)
+            {
+                if (argList[i] == "*")
+                {
+                    int value = getValueFromString(argList[i - 1], context) *
+                                    getValueFromString(argList[i + 1], context);
+
+                    argList.RemoveRange(i - 1, 3);
+                    argList.Insert(i - 1, value.ToString());
+                    i--;
+                }
+
+                if (argList[i] == "/")
+                {
+                    int value = getValueFromString(argList[i - 1], context) /
+                                    getValueFromString(argList[i + 1], context);
+
+                    argList.RemoveRange(i - 1, 3);
+                    argList.Insert(i - 1, value.ToString());
+                    i--;
+                }
+            }
+        }
 
 
 
@@ -72,78 +168,9 @@ namespace VizrtProjectV2
             return value;
         }
 
-        private static void SearchAndCalculateMultiplicationAndDivision(List<string> argList, Dictionary<string, intVariable> context)
-        {
-            for (int i = 0; i < argList.Count; i++)
-            {
-                if (argList[i] == "*")
-                {
-                    int value = getValueFromString(argList[i - 1], context) * 
-                                    getValueFromString(argList[i+1], context);
+       
 
-                    argList.RemoveRange(i - 1, 3);
-                    argList.Insert(i - 1, value.ToString());
-                    i--;
-                }
-
-                if (argList[i] == "/")
-                {
-                    int value = getValueFromString(argList[i - 1], context) /
-                                    getValueFromString(argList[i + 1], context);
-
-                    argList.RemoveRange(i - 1, 3);
-                    argList.Insert(i - 1, value.ToString());
-                    i--;
-                }
-            }
-        }
-
-
-        private static void SearchAndCalulateBrackets(List<string> argList, Dictionary<string, intVariable> context)
-        {
-            int count = 0;
-            while(count < argList.Count)
-            {
-                if(argList[count] == "(")
-                {
-                    ComputeValueOfBracket(argList, context, count);
-                }
-                count++;
-            }
-        }
-
-        private static void ComputeValueOfBracket(List<String> argList, Dictionary<String, intVariable> context, 
-                                                    int startIndexOfBracket)
-        {
-           
-            Boolean IsNotFound = true;
-            int indexOfNextBracket = startIndexOfBracket + 1;
-            while (IsNotFound)
-            {
-
-                if(argList[indexOfNextBracket] == "(")
-                {
-                    ComputeValueOfBracket(argList, context, indexOfNextBracket);
-                }
-
-                if(argList[indexOfNextBracket] == ")")
-                {
-                    List<String> insideBracket = 
-                        argList.GetRange(startIndexOfBracket + 1, indexOfNextBracket - startIndexOfBracket - 1);
-
-                    int ValueOfBrackets = AddOrSubtractArgListWithContext(insideBracket, context);
-                    
-                    //remove Bracket from the argument list and replace it with the value of the bracket.
-                    argList.RemoveRange(startIndexOfBracket, (indexOfNextBracket - startIndexOfBracket)  + 1); 
-                    //isnt inclusive so remove up to next bracket + 1
-
-                    argList.Insert(startIndexOfBracket, ValueOfBrackets.ToString());
-                    IsNotFound = false;
-                }
-                indexOfNextBracket++;
-            }
-            return;
-        }
+        
 
         private static int getValueFromString(String s, Dictionary<String, intVariable> context)
         {

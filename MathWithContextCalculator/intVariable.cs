@@ -72,7 +72,7 @@ namespace VizrtProjectV2
                 int n;
                 if (args[i] != "+" && args[i] != "-" &&
                     args[i] != "*" && args[i] != "/" &&
-                    args[i] != "(" && args[i] != ")")
+                    args[i] != "(" && args[i] != ")" && args[i] != "^")
                 {
                     bool isNumeric = int.TryParse(args[i], out n);
 
