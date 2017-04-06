@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathWithContextCalculatorTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathWithContextCalculator", "MathWithContextCalculator\MathWithContextCalculator.csproj", "{ECB0B0F3-1D4E-4A83-96A0-BCF1EC33505D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "WpfApplication1\UI.csproj", "{61012908-ADEB-45CA-AADD-837CF2E1133C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{61012908-ADEB-45CA-AADD-837CF2E1133C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
