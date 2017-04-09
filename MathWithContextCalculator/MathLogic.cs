@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VizrtProjectV2
+namespace MathWithContext
 {
     //This class is based on all Math Logic needed to find a value for an arglist
     //Can add more Math as needed and more operations via the swtich statement.
@@ -176,7 +176,7 @@ namespace VizrtProjectV2
         {
             if (context.ContainsKey(s))
             {
-                return context[s].getValue();
+                return context[s].Value;
             }
             else
             {
