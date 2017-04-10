@@ -42,5 +42,81 @@ namespace MathWithContext.Tests
 
             Assert.IsFalse(f.TryComputeValue(context)); // fails because 1+2 isnt a variable or parseable to int.
         }
+
+        [TestMethod()]
+        public void TryComputeValueMultiplacationAndDivision()
+        {
+            intVariable a = new intVariable("a", 2);
+            intVariable b = new intVariable("b", 4);
+            Dictionary<String, intVariable> context = new Dictionary<string, intVariable>();
+            context.Add(a.name, a);
+            context.Add(b.name, b);
+
+            intVariable c = new intVariable("c", new List<String>() { "a", "*", "b" });
+            context.Add(c.name, c);
+            Assert.IsTrue(c.TryComputeValue(context));
+
+            intVariable d = new intVariable("d", new List<String>() { "b", "/", "a" });
+            context.Add(d.name, d);
+            Assert.IsTrue(d.TryComputeValue(context));
+
+            intVariable e = new intVariable("e", new List<String>() { "9", "/", "3" });
+            context.Add(e.name, e);
+            Assert.IsTrue(e.TryComputeValue(context));
+
+            intVariable f = new intVariable("f", new List<String>() { "b", "*", "1" });
+            context.Add(f.name, f);
+            Assert.IsTrue(f.TryComputeValue(context));
+
+
+
+        }
+
+        [TestMethod()]
+        public void TryComputeValueBracket()
+        {
+            intVariable a = new intVariable("a", 2);
+            intVariable b = new intVariable("b", 4);
+            Dictionary<String, intVariable> context = new Dictionary<string, intVariable>();
+            context.Add(a.name, a);
+            context.Add(b.name, b);
+
+
+            intVariable c = new intVariable("c", new List<String>() { "(", "a", "*", "b", ")" });
+            context.Add(c.name, c);
+            Assert.IsTrue(c.TryComputeValue(context));
+
+            intVariable d = new intVariable("d", new List<String>() { "(", "a", "+", "b", ")" });
+            context.Add(d.name, d);
+            Assert.IsTrue(d.TryComputeValue(context));
+
+            intVariable e = new intVariable("e", new List<String>() { "(", "a", "^", "b", ")" });
+            context.Add(e.name, e);
+            Assert.IsTrue(e.TryComputeValue(context));
+        }
+
+        [TestMethod()]
+        public void TryComputeValueExponents()
+        {
+            intVariable a = new intVariable("a", 2);
+            intVariable b = new intVariable("b", 4);
+            Dictionary<String, intVariable> context = new Dictionary<string, intVariable>();
+            context.Add(a.name, a);
+            context.Add(b.name, b);
+
+            intVariable c = new intVariable("c", new List<String>() { "a", "^", "b" });
+            context.Add(c.name, c);
+            Assert.IsTrue(c.TryComputeValue(context));
+
+            intVariable d = new intVariable("d", new List<String>() { "b", "^", "2" });
+            context.Add(d.name, d);
+            Assert.IsTrue(d.TryComputeValue(context));
+
+            intVariable e = new intVariable("e", new List<String>() { "9", "^", "3" });
+            context.Add(e.name, e);
+            Assert.IsTrue(e.TryComputeValue(context));
+
+        }
+
     }
 }
