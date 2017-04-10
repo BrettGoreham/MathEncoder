@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VizrtProjectV2
+namespace MathWithContext
 {
     //This class is based on Parsing input from the user.
     public static class Parser

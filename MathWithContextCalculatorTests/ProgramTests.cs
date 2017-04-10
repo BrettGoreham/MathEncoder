@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VizrtProjectV2;
+using MathWithContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VizrtProjectV2.Tests
+namespace MathWithContext.Tests
 {
     [TestClass()]
     public class ProgramTests
@@ -28,7 +28,7 @@ namespace VizrtProjectV2.Tests
             context.Add(d.name, d);
             List<intVariable> toCompute = new List<intVariable>() { c, d };
             
-            Program.computeAndRemoveAllFullyInitialized(toCompute, context);
+            Program.computeAndReturnAllFullyInitialized(toCompute, context);
 
             ////c=3 d uncomputed
             Assert.AreEqual(1, toCompute.Count);
@@ -38,7 +38,7 @@ namespace VizrtProjectV2.Tests
             context.Add(f.name, f);
             toCompute.Add(f);
 
-            Program.computeAndRemoveAllFullyInitialized(toCompute, context);
+            Program.computeAndReturnAllFullyInitialized(toCompute, context);
 
             //c = 3 f  = 5 d is uncomputed
             Assert.AreEqual(1, toCompute.Count);
@@ -48,16 +48,16 @@ namespace VizrtProjectV2.Tests
             context.Add(e.name, e);
             toCompute.Add(e);
 
-            Program.computeAndRemoveAllFullyInitialized(toCompute, context);
+            Program.computeAndReturnAllFullyInitialized(toCompute, context);
             //e = 8 d = 10
             Assert.AreEqual(0, toCompute.Count);
 
-            Assert.AreEqual(1, a.getValue());
-            Assert.AreEqual(2, b.getValue());
-            Assert.AreEqual(3, c.getValue());
-            Assert.AreEqual(10, d.getValue());
-            Assert.AreEqual(8, e.getValue());
-            Assert.AreEqual(5, f.getValue());
+            Assert.AreEqual(1, a.Value);
+            Assert.AreEqual(2, b.Value);
+            Assert.AreEqual(3, c.Value);
+            Assert.AreEqual(10, d.Value);
+            Assert.AreEqual(8, e.Value);
+            Assert.AreEqual(5, f.Value);
         }
     }
 }

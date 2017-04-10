@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VizrtProjectV2
+namespace MathWithContext
 {
 
     //This class is responsible for holding information of one variable.
@@ -14,6 +14,19 @@ namespace VizrtProjectV2
         private int value { get; set; }
         public String name { get; set; }
 
+        public int Value
+        {
+            get
+            {
+                return value;
+            }
+            set
+            {
+                this.value = value;
+                this.hasValue = true;
+            }
+        }
+
         //used if we can not find the value right
         public Boolean hasValue { get; set; } = false; //default false
         public List<String> args { get; set; } = new List<String>();
@@ -21,7 +34,7 @@ namespace VizrtProjectV2
         public intVariable(String name, int value)
         {
             this.name = name;
-            this.setValue(value);
+            Value = value;
 
         }
 
@@ -33,15 +46,6 @@ namespace VizrtProjectV2
         }
 
 
-        public int getValue()
-        {
-            return value;
-        }
-        public void setValue(int value)
-        {
-            this.value = value;
-            this.hasValue = true;
-        }
 
         public void addToArgsList(List<String> argsList)
         {
@@ -93,7 +97,7 @@ namespace VizrtProjectV2
                     }
                 }
             }
-            this.setValue(MathLogic.calculateValueOfArgList(this.args, context));
+            Value = (MathLogic.calculateValueOfArgList(this.args, context));
             this.args = new List<String>();
             return true;
         }

@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VizrtProjectV2;
+using MathWithContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VizrtProjectV2.Tests
+namespace MathWithContext.Tests
 {
     [TestClass()]
     public class intVariableTests
