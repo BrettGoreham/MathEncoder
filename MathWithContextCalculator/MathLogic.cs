@@ -55,7 +55,7 @@ namespace MathWithContext
                     List<String> insideBracket =
                         argList.GetRange(startIndexOfBracket + 1, indexOfNextBracket - startIndexOfBracket - 1);
 
-                    int ValueOfBrackets = AddOrSubtractArgListWithContext(insideBracket, context);
+                    int ValueOfBrackets = calculateValueOfArgList(insideBracket, context);
 
                     //remove Bracket from the argument list and replace it with the value of the bracket.
                     argList.RemoveRange(startIndexOfBracket, (indexOfNextBracket - startIndexOfBracket) + 1);
