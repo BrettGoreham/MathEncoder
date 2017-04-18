@@ -7,8 +7,8 @@
     <ProjectGuid>{ECB0B0F3-1D4E-4A83-96A0-BCF1EC33505D}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VizrtProjectV2</RootNamespace>
-    <AssemblyName>VizrtProjectV2</AssemblyName>
+    <RootNamespace>MathWithContext</RootNamespace>
+    <AssemblyName>MathWithContextCalculator</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,9 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FunctionPackage\FunctionFeatureNotSupportedException.cs" />
+    <Compile Include="FunctionPackage\Function.cs" />
     <Compile Include="intVariable.cs" />
-    <Compile Include="MathLogic.cs" />
+    <Compile Include="MathSection\MathLogic.cs" />
     <Compile Include="Parser.cs" />
+    <Compile Include="FunctionPackage\FunctionLinkedListPart.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

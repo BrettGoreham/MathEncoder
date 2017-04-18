@@ -12,7 +12,9 @@ namespace MathWithContext
         private static Dictionary<String, intVariable> Context = new Dictionary<string, intVariable>();
         private static List<intVariable> toCompute = new List<intVariable>();
         static void Main(string[] args)
-        {                
+        {
+
+            FunctionPackage.Function a = new FunctionPackage.Function();
             string line;
             //while ((line = file.ReadLine()) != null)
             while (true)

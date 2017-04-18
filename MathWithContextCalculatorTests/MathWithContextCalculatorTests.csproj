@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FunctionPackage\FunctionTests.cs" />
     <Compile Include="intVariableTests.cs" />
     <Compile Include="MathLogicTests.cs" />
     <Compile Include="ParserTests.cs" />
